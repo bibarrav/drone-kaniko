@@ -90,6 +90,8 @@ else
     CACHE=""
 fi
 
+export
+
 /kaniko/executor -v ${LOG} \
     --context=${CONTEXT} \
     --dockerfile=${DOCKERFILE} \
