@@ -2,7 +2,26 @@
 
 A thin shim-wrapper around the official [Google Kaniko](https://cloud.google.com/blog/products/gcp/introducing-kaniko-build-container-images-in-kubernetes-and-google-container-builder-even-without-root-access) Docker image to make it behave like the [Drone Docker plugin](http://plugins.drone.io/drone-plugins/drone-docker/).
 
-Example .drone.yml for Drone 1.0 (pushing to Docker Hub):
+Example .drone for Drone <1.0 (pushing OpenFaas Function to Private Docker Registry)
+
+```yaml
+  pipeline:
+    build:
+      image: bibarrav/drone-kaniko
+      secrets:
+      - source: docker_registry
+        target: plugin_registry
+      - source: docker_registry_user
+        target: plugin_username
+      - source: docker_registry_pass
+        target: plugin_password
+      repo: ${DRONE_REPO_NAME}-fn
+      tags: latest-${DRONE_TAG}
+      context: ./build/${DRONE_REPO_NAME}-fn/
+      dockerfile: ./build/${DRONE_REPO_NAME}-fn/Dockerfile
+```
+
+Example .drone.yml for Drone >=1.0 (pushing to Docker Hub):
 
 ```yaml
 kind: pipeline
