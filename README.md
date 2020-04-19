@@ -7,7 +7,7 @@ Example .drone for Drone <1.0 (pushing OpenFaas Function to Private Docker Regis
 ```yaml
   pipeline:
     build:
-      image: bibarrav/drone-kaniko
+      image: knovus/drone-kaniko
       secrets:
       - source: docker_registry
         target: plugin_registry
